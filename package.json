@@ -24,6 +24,7 @@
 	"author": "İsmet Ömer Koyuncu",
 	"license": "MIT",
 	"dependencies": {
+		"fs": "^0.0.1-security",
 		"puppeteer": "^23.6.0"
 	}
 }
