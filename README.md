@@ -13,7 +13,7 @@ npm install website-to-file
 ## Usage
 
 ```javascript
-import capture from 'website-to-file';
+const capture = require('website-to-file');
 ```
 
 ### Functions

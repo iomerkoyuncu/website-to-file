@@ -1,5 +1,5 @@
-import { launch } from 'puppeteer';
-import { writeFileSync } from 'fs';
+const { launch } = require('puppeteer');
+const { writeFileSync } = require('fs');
 
 const defaultImageOptions = {
   launchOptions: {
@@ -56,7 +56,6 @@ async function capturePdf(url, path, options = {}) {
 }
 
 const capture = {
-
   image: async (url, options) => {
     return await captureImage(url, options);
   },
@@ -74,6 +73,4 @@ const capture = {
   }
 };
 
-// capture.asFile.image('https://www.google.com', 'google.png');
-
-export default capture 
+module.exports = capture;
