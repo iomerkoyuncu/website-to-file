@@ -1,5 +1,5 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs');
+import puppeteer from 'puppeteer';
+import fs from 'fs';
 
 const defaultImageOptions = {
   launchOptions: {
@@ -74,4 +74,4 @@ const capture = {
   }
 };
 
-module.exports = { capture };
+export default capture;
