@@ -1,5 +1,5 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs');
+import { launch } from 'puppeteer';
+import { writeFileSync } from 'fs';
 
 const defaultImageOptions = {
   launchOptions: {
@@ -30,7 +30,7 @@ const defaultPdfOptions = {
 };
 
 async function captureImage(url, options) {
-  const browser = await puppeteer.launch(options?.launchOptions || defaultImageOptions.launchOptions);
+  const browser = await launch(options?.launchOptions || defaultImageOptions.launchOptions);
   const page = await browser.newPage();
 
   await page.goto(url, options?.gotoOptions || defaultImageOptions.gotoOptions);
@@ -43,14 +43,14 @@ async function captureImage(url, options) {
 }
 
 async function capturePdf(url, path, options = {}) {
-  const browser = await puppeteer.launch(options.launchOptions || defaultImageOptions.launchOptions);
+  const browser = await launch(options.launchOptions || defaultImageOptions.launchOptions);
   const page = await browser.newPage();
   await page.goto(url, options.gotoOptions || defaultImageOptions.gotoOptions);
   if (typeof options.evaluate === 'function') { await page.evaluate(options.evaluate); }
   if (options.waitForSelector) { await page.waitForSelector(options.waitForSelector); }
   if (options.waitForTimeout) { await new Promise(resolve => setTimeout(resolve, options.waitForTimeout)); }
   const pdf = await page.pdf(options.pdfOptions || defaultPdfOptions);
-  fs.writeFileSync(path, pdf);
+  writeFileSync(path, pdf);
   await browser.close();
   return path;
 }
@@ -68,10 +68,12 @@ const capture = {
   asFile: {
     image: async (url, path, options) => {
       const data = await captureImage(url, options);
-      fs.writeFileSync(path, data, { encoding: 'base64' });
+      writeFileSync(path, data, { encoding: 'base64' });
       return path;
     },
   }
 };
 
-module.exports = { capture };
+capture.asFile.image('https://www.google.com', 'google.png');
+
+export default { capture };
