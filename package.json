@@ -1,10 +1,10 @@
 {
 	"name": "website-to-file",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Node.js library to capture image/pdf from url.",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "webpack"
 	},
 	"type": "module",
 	"keywords": [
@@ -28,5 +28,9 @@
 	"dependencies": {
 		"fs": "^0.0.1-security",
 		"puppeteer": "^23.6.0"
+	},
+	"devDependencies": {
+		"webpack": "^5.95.0",
+		"webpack-cli": "^5.1.4"
 	}
 }

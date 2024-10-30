@@ -74,6 +74,4 @@ const capture = {
   }
 };
 
-capture.asFile.image('https://www.google.com', 'google.png');
-
 export default { capture };
